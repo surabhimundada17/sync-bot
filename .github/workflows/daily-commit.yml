@@ -1,0 +1,24 @@
+name: Daily Commit Automation
+
+# Schedule workflow to run daily at 08:30 AM UTC
+on:
+  schedule:
+    - cron: '30 8 * * *'  # Runs every day at 08:30 UTC
+  workflow_dispatch:     # Allows manual triggering
+
+jobs:
+  daily-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Create a daily update commit - 23f2003781@ds.study.iitm.ac.in
+        run: |
+          echo "Daily update $(date)" >> daily_update.txt
+          git config --global user.name "DevSync Bot"
+          git config --global user.email "23f2003781@ds.study.iitm.ac.in"
+          git add daily_update.txt
+          git commit -m "Daily automated commit from GitHub Actions"
+          git push
