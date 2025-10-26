@@ -1,5 +1,8 @@
 name: Daily Commit Automation
 
+permissions:
+  contents: write
+
 # Schedule workflow to run daily at 08:30 AM UTC
 on:
   schedule:
